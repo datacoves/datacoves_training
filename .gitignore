@@ -1,0 +1,31 @@
+# manifest found file
+temp_MANIFEST_FOUND.txt
+
+# dbt
+target/
+dbt_modules/
+dbt_packages/
+.config/.user.yml
+/profiles.yml
+/.user.yml
+__pycache__
+
+nohup.out
+
+# Virtual envs
+venv/
+.env
+.venv
+env/
+
+scripts/
+
+# logs
+*.log
+logs/
+
+# Python cache
+__pycache__
+.gitsecret/keys/random_seed
+load/secrets/**/*.*
+!*.secret
