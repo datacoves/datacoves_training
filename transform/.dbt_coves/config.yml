@@ -2,8 +2,8 @@ generate:
   sources:
     database: RAW # Database where to look for source tables
     sources_destination: "models/L1_staging/{{schema}}/_{{schema}}.yml" # Where sources yml files will be generated
-    models_destination: "models/L1_staging/{{schema}}/{{relation}}.sql" # Where models sql files will be generated
-    model_props_destination: "models/L1_staging/{{schema}}/{{relation}}.yml" # Where models yml files will be generated
+    models_destination: "models/L1_staging/{{schema}}/stg_{{relation}}.sql" # Where models sql files will be generated
+    model_props_destination: "models/L1_staging/{{schema}}/stg_{{relation}}.yml" # Where models yml files will be generated
     update_strategy: update # Action to perform when a property file exists. Options: update, recreate, fail, ask
     templates_folder: ".dbt_coves/templates" # Folder where source generation jinja templates are located.
     flatten_json_fields: "no" # Action to perform when VARIANT / JSON field is encountered
@@ -73,3 +73,14 @@ generate:
 #   fivetran:
 #     path: /config/workspace/load/fivetran
 #     run_connection_tests: true
+
+blue_green:
+  prod_db_env_var: DATACOVES__MAIN__DATABASE # This holds the name of the production database --- no default
+  # staging_database: STAGING_DB # Optional name you want to give to the staging database --- no default
+  # staging_suffix: STAGING # If not using staging_database above, {prod_db}_{staging_suffix} will be used --- default: STAGING
+  drop_staging_db_at_start: false # Start blue-green by dropping staging db --- default false
+  drop_staging_db_on_failure: false # Drop staging db if blue-green fails --- default false
+  keep_staging_db_on_success: false # Keep staging db if blue-green succeeds --- default false
+  # dbt_selector: "-s personal_loans" # dbt build arguments --- no default
+  # full_refresh: true # Append --full-refresh to dbt command --- default false
+  # defer: true # run in dbt in deferral mode by adding -s --state:modified+ --state logs --defer to the dbt command --- default false
