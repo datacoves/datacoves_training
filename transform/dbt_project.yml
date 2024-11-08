@@ -37,6 +37,8 @@ models:
   datacoves_starter_project:
     L1_staging:
       +materialized: view
+      country_data:
+        +schema: L1_COUNTRY_DATA
     L2_core:
       +materialized: view
     L3_marts:
