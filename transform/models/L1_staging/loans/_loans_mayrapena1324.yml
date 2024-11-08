@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: MAYRAPENA1324
+    database: RAW
+    tables:
+      - name: PERSONAL_LOANS
+        description: ''
