@@ -1,9 +1,9 @@
 generate:
   sources:
     database: RAW # Database where to look for source tables
-    sources_destination: "models/L1_staging/{{schema}}/_{{schema}}.yml" # Where sources yml files will be generated
-    models_destination: "models/L1_staging/{{schema}}/stg_{{relation}}.sql" # Where models sql files will be generated
-    model_props_destination: "models/L1_staging/{{schema}}/stg_{{relation}}.yml" # Where models yml files will be generated
+    sources_destination: "models/L1_staging/loans/_loans_{{schema}}.yml" # Where sources yml files will be generated
+    models_destination: "models/L1_staging/loans/stg_{{schema}}_{{relation}}.sql" # Where models sql files will be generated
+    model_props_destination: "models/L1_staging/loans/stg_{{schema}}_{{relation}}.yml" # Where models yml files will be generated
     update_strategy: update # Action to perform when a property file exists. Options: update, recreate, fail, ask
     templates_folder: ".dbt_coves/templates" # Folder where source generation jinja templates are located.
     flatten_json_fields: "no" # Action to perform when VARIANT / JSON field is encountered
