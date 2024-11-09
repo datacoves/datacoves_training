@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: COUNTRY_POPULATIONS
-    description: ''
+    description: 'A country populations table'
     columns:
       - name: year
         description: The year for which the population value is recorded
