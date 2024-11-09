@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: COUNTRY_POPULATIONS
+  - name: STG_COUNTRY_POPULATIONS
     description: 'Raw population information from Github Datasets repository'
     columns:
       - name: year
