@@ -1,7 +1,7 @@
 with raw_source as (
 
     select *
-    from {{ source('COUNTRY_DATA', 'STG_COUNTRY_POPULATIONS') }}
+    from {{ source('COUNTRY_DATA', 'COUNTRY_POPULATIONS') }}
 
 ),
 
