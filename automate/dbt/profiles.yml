@@ -1,7 +1,7 @@
 default:
-  target: dev
+  target: default_target
   outputs:
-    dev:
+    default_target:
       type: snowflake
       threads: 16
       client_session_keep_alive: true
