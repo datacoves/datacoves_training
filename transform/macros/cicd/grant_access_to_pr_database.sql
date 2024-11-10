@@ -5,7 +5,7 @@
 #}
 
 {%- macro grant_access_to_pr_database() -%}
-    {% set db_role_name = 'z_db_balboa_tst' %}
+    {% set db_role_name = 'analyst' %}
     {% set db_name = target.database %}
 
     {% set apply_db_grants_sql %}
@@ -13,8 +13,8 @@
     {% endset %}
 
     {% do run_query(apply_db_grants_sql) %}
-
     {% set schemas_list %}
+
         select schema_name
         from {{ db_name }}.information_schema.schemata
         where schema_name not in ('INFORMATION_SCHEMA','PUBLIC','DBT_TEST__AUDIT')
@@ -24,9 +24,9 @@
     {% for schema in schemas %}
 
         {% set apply_schema_grants_sql %}
-            grant usage on schema {{db_name}}.{{ schema[0] }} to z_schema_{{schema[0]}};
-            grant select on all tables in schema {{db_name}}.{{ schema[0] }} to role z_tables_views_general;
-            grant select on all views in schema {{db_name}}.{{ schema[0] }} to role z_tables_views_general;
+            grant usage on schema {{db_name}}.{{ schema[0] }} to {{schema[0]}};
+            grant select on all tables in schema {{db_name}}.{{ schema[0] }} to role analyst;
+            grant select on all views in schema {{db_name}}.{{ schema[0] }} to role analyst;
         {% endset %}
 
         {% do run_query(apply_schema_grants_sql) %}
