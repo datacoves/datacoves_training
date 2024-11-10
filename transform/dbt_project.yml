@@ -37,6 +37,10 @@ models:
   datacoves_starter_project:
     L1_staging:
       +materialized: view
+      loans:
+        +materialized: view
+      country_data:
+        +materialized: view
     L2_core:
       +materialized: view
     L3_marts:
