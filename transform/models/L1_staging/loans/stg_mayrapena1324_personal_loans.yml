@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: STG_MAYRAPENA1324_PERSONAL_LOANS
+  - name: stg_mayrapena1324_personal_loans
     description: 'A staging model for personal loans'
     columns:
       - name: airbyte_raw_id
