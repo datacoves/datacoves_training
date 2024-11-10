@@ -5,4 +5,4 @@ sources:
     database: RAW
     tables:
       - name: PERSONAL_LOANS
-        description: ''
+        description: 'A personal loans source table'
