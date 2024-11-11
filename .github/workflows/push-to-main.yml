@@ -64,6 +64,7 @@ jobs:
       # This is used by datacoves to drop the staging database for blue/green
       # deployments, most likely you don't want to set this, we use it for demos
       DATACOVES__DROP_DB_ON_FAIL:  ${{ vars.DATACOVES__DROP_DB_ON_FAIL }}
+      MANIFEST_FOUND: ${{ steps.prod_manifest.outputs.manifest_found }}
 
     steps:
       - name: Checkout branch
@@ -80,8 +81,6 @@ jobs:
 
       - name: Get prod manifest
         id: prod-manifest
-        env:
-          GITHUB_OUTPUT: ${{ env.GITHUB_OUTPUT }}
         run: "../automate/dbt/get_artifacts.sh"
 
       - name: Debug output
