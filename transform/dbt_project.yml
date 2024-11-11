@@ -1,7 +1,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: datacoves_training # Change this to your project name
+name: datacoves_training # Change this to your project name. Ensure it matches in models section below.
 version: "1.0.0"
 config-version: 2
 
@@ -34,7 +34,7 @@ clean-targets: # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  datacoves_starter_project:
+  datacoves_training:
     L1_staging:
       +materialized: view
       loans:
@@ -43,7 +43,4 @@ models:
         +materialized: view
     L2_core:
       +materialized: view
-    L3_marts:
-      +materialized: table
-    L4_test:
-      +materialized: table
+
