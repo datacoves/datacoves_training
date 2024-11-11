@@ -86,7 +86,7 @@ jobs:
         run: "echo Manifest found: ${{ steps.prod_manifest.outputs.manifest_found }}"
 
       # Runs blue green with no deferral
-      - name: Run blue / green deployment with full-refresh
+      - name: Run blue / green deployment
         if: ${{ steps.prod_manifest.outputs.manifest_found == 'false' }}
         id: run-blue-green
         # env:
@@ -94,7 +94,7 @@ jobs:
         run: "dbt-coves blue-green"
 
       # Runs blue green with deferral
-      - name: Run blue / green deployment
+      - name: Run blue / green deployment with deferral
         if: ${{ steps.prod_manifest.outputs.manifest_found == 'true' }}
         id: run-blue-green-defer
         # env:
