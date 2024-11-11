@@ -34,7 +34,7 @@ jobs:
     name: Deployment Script
     runs-on: ubuntu-latest
     outputs:
-      manifest_found: ${{ steps.prod_manifest.outputs.manifest_found }}
+      # manifest_found: ${{ steps.prod_manifest.outputs.manifest_found }}
 
     # Set environment variables in
     # https://github.com//<your org>/<your repo>/settings/variables/actions
