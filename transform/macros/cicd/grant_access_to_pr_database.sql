@@ -18,15 +18,16 @@
         select schema_name
         from {{ db_name }}.information_schema.schemata
         where schema_name not in ('INFORMATION_SCHEMA','PUBLIC','DBT_TEST__AUDIT')
+        {{print(schema_list)}}
     {% endset %}
 
     {% set schemas = run_query(schemas_list) %}
     {% for schema in schemas %}
 
         {% set apply_schema_grants_sql %}
-            grant usage on schema {{db_name}}.{{ schema[0] }} to {{schema[0]}};
-            grant select on all tables in schema {{db_name}}.{{ schema[0] }} to role analyst;
-            grant select on all views in schema {{db_name}}.{{ schema[0] }} to role analyst;
+            grant usage on schema {{db_name}}.{{ schema[0] }} to {{db_role_name}};
+            grant select on all tables in schema {{db_name}}.{{ schema[0] }} to role {{db_role_name}};
+            grant select on all views in schema {{db_name}}.{{ schema[0] }} to role {{db_role_name}};
         {% endset %}
 
         {% do run_query(apply_schema_grants_sql) %}
