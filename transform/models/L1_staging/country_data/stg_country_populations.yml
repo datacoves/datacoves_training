@@ -9,7 +9,7 @@ models:
       - name: country_name
         description: The name of the country
         data_tests:
-          - unique
+          - not_null
       - name: value
         description: The population value for a particular year and country
       - name: country_code
