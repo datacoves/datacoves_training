@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: COUNTRY_DATA
+    database: RAW
+    tables:
+      - name: COUNTRY_POPULATIONS
+        description: 'Raw population information from Github Datasets repository'
