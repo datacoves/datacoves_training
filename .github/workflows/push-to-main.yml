@@ -85,11 +85,11 @@ jobs:
         run: "../automate/dbt/get_artifacts.sh"
 
       - name: Debug output
-        run: "echo Manifest found: ${{ steps.prod_manifest.outputs.manifest_found }}"
+        run: "echo Manifest found: ${{ steps.prod-manifest.outputs.manifest_found }}"
 
       # Runs blue green with no deferral
       - name: Run blue / green deployment
-        if: ${{ steps.prod_manifest.outputs.manifest_found == 'false' }}
+        if: ${{ steps.prod-manifest.outputs.manifest_found == 'false' }}
         id: run-blue-green
         # env:
         #   MANIFEST_FOUND: ${{ steps.prod_manifest.outputs.manifest_found }}
@@ -97,7 +97,7 @@ jobs:
 
       # Runs blue green with deferral
       - name: Run blue / green deployment with deferral
-        if: ${{ steps.prod_manifest.outputs.manifest_found == 'true' }}
+        if: ${{ steps.prod-manifest.outputs.manifest_found == 'true' }}
         id: run-blue-green-defer
         # env:
         #   MANIFEST_FOUND: ${{ steps.prod_manifest.outputs.manifest_found }}
