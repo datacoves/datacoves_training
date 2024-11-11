@@ -18,7 +18,7 @@ from operators.datacoves.dbt import DatacovesDbtOperator
 )
 def sample_dag():
     run_dbt = DatacovesDbtOperator(
-        task_id="run_dbt", bash_command="dbt source freshness && dbt build"
+        task_id="run_dbt", bash_command="dbt debug"
     )
 
 
