@@ -33,6 +33,7 @@ else
     # This is used by github actions
     # echo "::set-output name=manifest_found::true"
     echo "manifest_found=true" >> $GITHUB_OUTPUT
+    echo "Wrote manifest_found=true to GITHUB_OUTPUT"
 
     # This is used by Jenkins
     # echo "true" > temp_MANIFEST_FOUND.txt
