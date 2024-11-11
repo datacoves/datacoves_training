@@ -33,7 +33,7 @@ jobs:
 
     name: Deployment Script
     runs-on: ubuntu-latest
-    outputs:
+    # outputs:
       # manifest_found: ${{ steps.prod_manifest.outputs.manifest_found }}
 
     # Set environment variables in
