@@ -82,12 +82,15 @@ jobs:
         id: prod-manifest
         run: "../automate/dbt/get_artifacts.sh"
 
+      - name: Debug output
+        run: "echo Manifest found: ${{ steps.prod_manifest.outputs.manifest_found }}"
+
       # Runs blue green with no deferral
       - name: Run blue / green deployment with full-refresh
         if: ${{ steps.prod_manifest.outputs.manifest_found == 'false' }}
+        id: run-blue-green
         env:
           MANIFEST_FOUND: ${{ steps.prod-manifest.outputs.manifest_found }}
-        id: run-blue-green
         run: "dbt-coves blue-green"
 
       # Runs blue green with deferral
