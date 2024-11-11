@@ -4,6 +4,5 @@ models:
   - name: mayrapena1324_avg_by_grade
     description: ''
     columns:
-      - name: grade
       - name: avg_loan_amount
       - name: total_loans
