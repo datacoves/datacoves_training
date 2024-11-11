@@ -80,6 +80,8 @@ jobs:
 
       - name: Get prod manifest
         id: prod-manifest
+        env:
+          GITHUB_OUTPUT: ${{ env.GITHUB_OUTPUT }}
         run: "../automate/dbt/get_artifacts.sh"
 
       - name: Debug output
