@@ -78,7 +78,7 @@ blue_green:
   prod_db_env_var: DATACOVES__MAIN__DATABASE # This holds the name of the production database --- no default
   # staging_database: STAGING_DB # Optional name you want to give to the staging database --- no default
   # staging_suffix: STAGING # If not using staging_database above, {prod_db}_{staging_suffix} will be used --- default: STAGING
-  drop_staging_db_at_start: false # Start blue-green by dropping staging db --- default false
+  drop_staging_db_at_start: true # Start blue-green by dropping staging db --- default false
   drop_staging_db_on_failure: false # Drop staging db if blue-green fails --- default false
   keep_staging_db_on_success: false # Keep staging db if blue-green succeeds --- default false
   # dbt_selector: "-s personal_loans" # dbt build arguments --- no default
