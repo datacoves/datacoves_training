@@ -85,6 +85,8 @@ jobs:
       # Runs blue green with no deferral
       - name: Run blue / green deployment with full-refresh
         if: ${{ steps.prod_manifest.outputs.manifest_found == 'false' }}
+        env:
+          MANIFEST_FOUND: ${{ steps.prod-manifest.outputs.manifest_found }}
         id: run-blue-green
         run: "dbt-coves blue-green"
 
@@ -92,6 +94,8 @@ jobs:
       - name: Run blue / green deployment
         if: ${{ steps.prod_manifest.outputs.manifest_found == 'true' }}
         id: run-blue-green-defer
+        env:
+          MANIFEST_FOUND: ${{ steps.prod-manifest.outputs.manifest_found }}
         run: "dbt-coves blue-green --defer"
 
       - name: Drop orphaned relations in db that are no longer in dbt
