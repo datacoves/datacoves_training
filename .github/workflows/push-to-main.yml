@@ -97,6 +97,7 @@ jobs:
       - name: Run blue / green deployment with deferral
         if: ${{ steps.prod_manifest.outputs.manifest_found == 'true' }}
         id: run-blue-green-defer
+        
         # env:
         #   MANIFEST_FOUND: ${{ steps.prod_manifest.outputs.manifest_found }}
         run: "dbt-coves blue-green --defer"

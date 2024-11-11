@@ -22,6 +22,8 @@ then
     # This is used by github actions
     # echo "::set-output name=manifest_found::false"
     echo "manifest_found=false" >> $GITHUB_OUTPUT
+    # Debugging statement
+    echo "Wrote manifest_found=false to GITHUB_OUTPUT"
 
     # This is used by Jenkins
     # echo "false" > temp_MANIFEST_FOUND.txt
