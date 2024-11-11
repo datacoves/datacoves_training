@@ -1,15 +1,15 @@
 version: 2
 
 models:
-  - name: COUNTRY_POPULATIONS
+  - name: stg_country_populations
     description: 'Raw population information from Github Datasets repository'
     columns:
       - name: year
         description: The year for which the population value is recorded
-        data_tests:
-          - not_null
       - name: country_name
         description: The name of the country
+        data_tests:
+          - not_null
       - name: value
         description: The population value for a particular year and country
       - name: country_code

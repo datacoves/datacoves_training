@@ -1,4 +1,3 @@
-
 #! /bin/bash
 
 # Cause script to exit on error
@@ -9,7 +8,13 @@ cd $DATACOVES__DBT_HOME
 mkdir -p logs
 
 dbt run-operation get_last_artifacts
+
+# Check if manifest,son exist, count lines if does or set to 0
+if [ -e "logs/manifest.json" ]; then
 LINES_IN_MANIFEST="$(grep -c '^' logs/manifest.json)"
+else
+    LINES_IN_MANIFEST="0"
+fi
 
 if [ $LINES_IN_MANIFEST -eq 0 ]
 then

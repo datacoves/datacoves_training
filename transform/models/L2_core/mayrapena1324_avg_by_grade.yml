@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: mayrapena1324_avg_by_grade
+    description: 'An average loan amount by grade'
+    columns:
+      - name: grade
+      - name: avg_loan_amount
+      - name: total_loans

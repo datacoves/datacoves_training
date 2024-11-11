@@ -87,6 +87,7 @@ jobs:
         run: "dbt build --fail-fast --empty"
 
       - name: Generate Docs Combining Prod and branch catalog.json
+        if: ${{ steps.prod_manifest.outputs.manifest_found == 'true' && contains(github.event.pull_request.labels.*.name, 'full-refresh') != true }}
         run: "dbt-coves generate docs --merge-deferred --state logs"
 
       - name: Run governance checks
