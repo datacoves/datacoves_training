@@ -101,7 +101,7 @@ jobs:
         run: "dbt docs generate"
 
       - name: Deploy docs 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@4.6.9
         with:
           branch: dbt-docs
           folder: transform/target
