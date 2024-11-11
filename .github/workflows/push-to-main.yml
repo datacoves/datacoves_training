@@ -33,6 +33,8 @@ jobs:
 
     name: Deployment Script
     runs-on: ubuntu-latest
+    outputs:
+      manifest_found: ${{ steps.prod_manifest.outputs.manifest_found }}
 
     # Set environment variables in
     # https://github.com//<your org>/<your repo>/settings/variables/actions
@@ -64,7 +66,6 @@ jobs:
       # This is used by datacoves to drop the staging database for blue/green
       # deployments, most likely you don't want to set this, we use it for demos
       DATACOVES__DROP_DB_ON_FAIL:  ${{ vars.DATACOVES__DROP_DB_ON_FAIL }}
-      MANIFEST_FOUND: ${{ steps.prod_manifest.outputs.manifest_found }}
 
     steps:
       - name: Checkout branch
