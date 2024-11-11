@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_mayrapena1324_personal_loans
-    description: ''
+    description: 'A personal Loans table'
     columns:
       - name: airbyte_raw_id
       - name: airbyte_extracted_at
