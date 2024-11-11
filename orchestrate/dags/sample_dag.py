@@ -7,8 +7,8 @@ from operators.datacoves.dbt import DatacovesDbtOperator
 @dag(
     default_args={
         "start_date": datetime.datetime(2023, 1, 1, 0, 0),
-        "owner": "John Doe",
-        "email": "john@example.com",
+        "owner": "Mayra Peña",
+        "email": "mayra@example.com",
         "email_on_failure": True,
     },
     description="Daily dbt run",
@@ -16,10 +16,10 @@ from operators.datacoves.dbt import DatacovesDbtOperator
     tags=["version_1"],
     catchup=False,
 )
-def daily_run():
+def sample_dag():
     run_dbt = DatacovesDbtOperator(
         task_id="run_dbt", bash_command="dbt source freshness && dbt build"
     )
 
 
-dag = daily_run()
+dag = sample_dag()
