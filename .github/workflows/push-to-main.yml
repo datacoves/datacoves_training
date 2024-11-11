@@ -17,7 +17,7 @@ on:  # yamllint disable-line rule:truthy
       - main
     paths:
       - .github/workflows/*
-      - automate/*
+      - automate/**
       - transform/*
       - transform/**/*
 
