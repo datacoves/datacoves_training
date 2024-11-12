@@ -14,7 +14,7 @@ from operators.datacoves.dbt import DatacovesDbtOperator
     tags=["version_2"],
     catchup=False,
 )
-def sample_dag():
+def tester_dag():
 
     @task
     def get_variable():
@@ -36,4 +36,4 @@ def sample_dag():
 
     run_dbt_task(fetched_variable)
 
-dag = sample_dag()
+dag = tester_dag()
