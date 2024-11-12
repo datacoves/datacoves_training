@@ -11,7 +11,7 @@ from operators.datacoves.dbt import DatacovesDbtOperator
     },
     description="Sample DAG for dbt build",
     schedule_interval="0 0 1 */12 *",
-    tags=["version_2"],
+    tags=["version_3"],
     catchup=False,
 )
 def tester_dag():
@@ -34,6 +34,5 @@ def tester_dag():
             bash_command=f"dbt run -s personal_loans --vars '{{my_var: \"{fetched_variable}\"}}'"
         )
 
-    run_dbt_task(fetched_variable)
 
 dag = tester_dag()
