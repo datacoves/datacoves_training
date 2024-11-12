@@ -14,4 +14,4 @@ nodes:
   run_dbt:
     type: task
     operator: operators.datacoves.dbt.DatacovesDbtOperator
-    bash_command: "dbt source freshness && dbt build"
+    bash_command: "dbt debug"
