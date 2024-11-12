@@ -7,3 +7,4 @@ models:
       - name: grade
       - name: avg_loan_amount
       - name: total_loans
+      
