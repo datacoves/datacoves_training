@@ -91,7 +91,7 @@ jobs:
         run: "dbt-coves generate docs --merge-deferred --state logs"
 
       - name: Run governance checks
-        run: "pre-commit run --from-ref origin/${{ github.event.pull_request.base.ref }} --to-ref HEAD"
+        run: "dbt parse && pre-commit run --from-ref origin/${{ github.event.pull_request.base.ref }} --to-ref HEAD"
 
       ##### Real dbt run given that we passed governance checks
       - name: Run dbt build slim mode
