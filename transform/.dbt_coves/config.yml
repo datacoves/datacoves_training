@@ -24,20 +24,20 @@ generate:
 
     # UNCOMMENT THE FOLLOWING LINES TO ENABLE AIRFLOW DAGS GENERATION
     # BASED ON AIRBYTE AND FIVETRAN CONNECTIONS
-    # generators_params:
-    #   AirbyteDbtGenerator:
-    #     host: "{{ env_var('DATACOVES__AIRBYTE_HOST_NAME') }}"
-    #     port: "{{ env_var('DATACOVES__AIRBYTE_PORT') }}"
-    #     airbyte_conn_id: airbyte_connection
+    generators_params:
+      AirbyteDbtGenerator:
+        host: "{{ env_var('DATACOVES__AIRBYTE_HOST_NAME') }}"
+        port: "{{ env_var('DATACOVES__AIRBYTE_PORT') }}"
+        airbyte_conn_id: airbyte_connection
 
-    #     dbt_project_path: "{{ env_var('DATACOVES__DBT_HOME') }}"
-    #     run_dbt_compile: false
-    #     run_dbt_deps: false
+        dbt_project_path: "{{ env_var('DATACOVES__DBT_HOME') }}"
+        run_dbt_compile: false
+        run_dbt_deps: false
 
-    #   AirbyteGenerator:
-    #     host: "{{ env_var('DATACOVES__AIRBYTE_HOST_NAME') }}"
-    #     port: "{{ env_var('DATACOVES__AIRBYTE_PORT') }}"
-    #     airbyte_conn_id: airbyte_connection
+      AirbyteGenerator:
+        host: "{{ env_var('DATACOVES__AIRBYTE_HOST_NAME') }}"
+        port: "{{ env_var('DATACOVES__AIRBYTE_PORT') }}"
+        airbyte_conn_id: airbyte_connection
 
     #   FivetranDbtGenerator:
     #     api_key: "{{ env_var('DATACOVES__FIVETRAN_API_KEY') }}"
@@ -55,11 +55,11 @@ generate:
     #       - fivetran-connection-id-2
 
 # UNCOMMENT THE FOLLOWING LINES TO ENABLE AIRBYTE EXTRACTION
-# extract:
-#   airbyte:
-#     path: /config/workspace/load/airbyte
-#     host: "{{ env_var('DATACOVES__AIRBYTE_HOST_NAME') }}"
-#     port: "{{ env_var('DATACOVES__AIRBYTE_PORT') }}"
+extract:
+  airbyte:
+    path: /config/workspace/load/airbyte
+    host: "{{ env_var('DATACOVES__AIRBYTE_HOST_NAME') }}"
+    port: "{{ env_var('DATACOVES__AIRBYTE_PORT') }}"
 
 #   fivetran:
 #     path: /config/workspace/extract/fivetran
@@ -73,6 +73,7 @@ generate:
 #   fivetran:
 #     path: /config/workspace/load/fivetran
 #     run_connection_tests: true
+
 
 blue_green:
   prod_db_env_var: DATACOVES__MAIN__DATABASE # This holds the name of the production database --- no default

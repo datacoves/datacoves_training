@@ -16,10 +16,10 @@ from operators.datacoves.dbt import DatacovesDbtOperator
     tags=["version_1"],
     catchup=False,
 )
-def daily_run():
+def sample_dag():
     run_dbt = DatacovesDbtOperator(
-        task_id="run_dbt", bash_command="dbt source freshness && dbt build"
+        task_id="run_dbt", bash_command="dbt debug"
     )
 
 
-dag = daily_run()
+dag = sample_dag()
