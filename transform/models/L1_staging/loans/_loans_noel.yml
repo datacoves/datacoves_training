@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: NOEL
+    database: RAW
+    tables:
+      - name: NOEL_SOURCE
+        description: ''
