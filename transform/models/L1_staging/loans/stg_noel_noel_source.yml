@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: NOEL_SOURCE
+  - name: stg_noel_noel_source
     description: ''
     columns:
       - name: airbyte_raw_id
