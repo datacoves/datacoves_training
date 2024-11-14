@@ -1,5 +1,5 @@
 description: "Daily dbt run"
-schedule_interval: "0 12 * * *"
+schedule: "0 12 * * *"
 tags:
   - version_1
 default_args:
@@ -8,6 +8,7 @@ default_args:
   # Replace with the email of the recipient for failures
   email: john@example.com
   email_on_failure: true
+  retires: 3
 catchup: false
 
 nodes:
