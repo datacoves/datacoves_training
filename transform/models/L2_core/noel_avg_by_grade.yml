@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: mayrapena1324_avg_by_grade
-    description: 'Average personal loan by grade'
+  - name: noel_avg_by_grade
+    description: 'my model'
     columns:
       - name: grade
       - name: avg_loan_amount

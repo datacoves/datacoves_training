@@ -1,10 +1,10 @@
 version: 2
 
 sources:
-  - name: MAYRAPENA1324
+  - name: NOEL
     database: RAW
     tags:
       - daily_run_airbyte
     tables:
-      - name: PERSONAL_LOANS
-        description: ''
+      - name: NOEL_SOURCE
+        description: 'country data'

@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: {{model}}
-    description: ''
+  - name: stg_{{relation.schema | lower }}_{{model | lower }}
+    description: 'TESTING'
     columns:
 {%- for cols in nested.values() %}
   {%- for col in cols %}

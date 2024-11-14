@@ -9,8 +9,8 @@ from operators.datacoves.dbt import DatacovesDbtOperator
 @dag(
     default_args={
         "start_date": datetime.datetime(2023, 1, 1, 0, 0),
-        "owner": "Mayra Pena",
-        "email": "mayra@datacoves.com",
+        "owner": "Noel Gomez",
+        "email": "noel@example.com",
         "email_on_failure": True,
     },
     description="Personal Loan Average",
@@ -18,7 +18,7 @@ from operators.datacoves.dbt import DatacovesDbtOperator
     tags=["version_1"],
     catchup=False,
 )
-def mayrapena1324_dag():
+def noel():
     @task_group(group_id="extract_and_load_airbyte", tooltip="Airbyte Extract and Load")
     def extract_and_load_airbyte():
         country_populations_datacoves_train = AirbyteTriggerSyncOperator(
@@ -26,9 +26,9 @@ def mayrapena1324_dag():
             connection_id="676575f7-22d7-41f4-ab78-52099d8cbccb",
             airbyte_conn_id="airbyte_connection",
         )
-        personal_loans_datacoves_train = AirbyteTriggerSyncOperator(
-            task_id="personal_loans_datacoves_train",
-            connection_id="04b4fc09-bc22-4d19-b457-2d1fe84fbd40",
+        noel_source_datacoves_train = AirbyteTriggerSyncOperator(
+            task_id="noel_source_datacoves_train",
+            connection_id="c94c67bd-63dd-47d5-a117-e7544eee50f5",
             airbyte_conn_id="airbyte_connection",
         )
 
@@ -39,4 +39,4 @@ def mayrapena1324_dag():
     transform.set_upstream([tg_extract_and_load_airbyte])
 
 
-dag = mayrapena1324_dag()
+dag = noel()

@@ -4,9 +4,9 @@ tags:
   - version_1
 default_args:
   start_date: 2023-01-01
-  # Replace name and email 
-  owner: Mayra Pena
-  email: mayra@datacoves.com
+  # Replace with the email of the recipient for failures
+  owner: Noel Gomez
+  email: noel@example.com
   email_on_failure: true
 catchup: false
 

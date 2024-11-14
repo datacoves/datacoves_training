@@ -1,6 +1,6 @@
 with raw_source as (
 
-    select * from {{ ref('stg_mayrapena1324_personal_loans') }}
+    select * from {{ ref('stg_noel_noel_source') }}
 
 ),
 
