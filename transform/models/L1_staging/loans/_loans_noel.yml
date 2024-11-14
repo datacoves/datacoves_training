@@ -5,4 +5,4 @@ sources:
     database: RAW
     tables:
       - name: NOEL_SOURCE
-        description: ''
+        description: 'country data'
