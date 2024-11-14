@@ -1,0 +1,26 @@
+description: "Personal Loan Average"
+schedule_interval: "0 0 1 */12 *"
+tags:
+  - version_1
+default_args:
+  start_date: 2023-01-01
+  # Replace with the email of the recipient for failures
+  owner: Noel Gomez
+  email: noel@example.com
+  email_on_failure: true
+catchup: false
+
+nodes:
+  extract_and_load_airbyte:
+    generator: AirbyteDbtGenerator
+    type: task_group
+
+    tooltip: "Airbyte Extract and Load"
+    dbt_list_args: "--select tag:daily_run_airbyte"
+
+  transform:
+    operator: operators.datacoves.dbt.DatacovesDbtOperator
+    type: task
+
+    bash_command: "dbt build -s 'tag:daily_run_airbyte+ -t prd'"
+    dependencies: ["extract_and_load_airbyte"]
