@@ -8,7 +8,7 @@ with raw_source as (
 final as (
 
     select
-        grades,
+        grade as grades,
         avg(loan_amnt) as avg_loan_amount,
         count(*) as total_loans
     from raw_source
