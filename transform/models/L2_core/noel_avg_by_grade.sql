@@ -2,12 +2,13 @@ with raw_source as (
 
     select * from {{ ref('stg_noel_noel_source') }}
 
+
 ),
 
 final as (
 
     select
-        grade,
+        grades,
         avg(loan_amnt) as avg_loan_amount,
         count(*) as total_loans
     from raw_source

@@ -4,6 +4,6 @@ models:
   - name: noel_avg_by_grade
     description: 'my model'
     columns:
-      - name: grade
+      - name: grades
       - name: avg_loan_amount
       - name: total_loans
