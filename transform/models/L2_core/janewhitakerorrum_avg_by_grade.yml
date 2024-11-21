@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: janewhitakerorrum_avg_by_grade
+    description: 'Janes calculation for loan avg by grade'
+    columns:
+      - name: grade
+      - name: avg_loan_amount
+      - name: total_loans

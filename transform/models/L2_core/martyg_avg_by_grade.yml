@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: martyg_avg_by_grade
+    description: 'Martys model calculating average by grade'
+    columns:
+      - name: grade
+      - name: avg_loan_amount
+      - name: total_loans
