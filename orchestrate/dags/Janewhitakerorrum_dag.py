@@ -27,6 +27,11 @@ def Janewhitakerorrum_dag():
             connection_id="676575f7-22d7-41f4-ab78-52099d8cbccb",
             airbyte_conn_id="airbyte_connection",
         )
+        martyg_source_datacoves_train = AirbyteTriggerSyncOperator(
+            task_id="martyg_source_datacoves_train",
+            connection_id="b330c95c-6a89-476a-84b6-1462fe28fa9e",
+            airbyte_conn_id="airbyte_connection",
+        )
 
     tg_extract_and_load_airbyte = extract_and_load_airbyte()
     transform = DatacovesDbtOperator(

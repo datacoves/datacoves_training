@@ -22,6 +22,5 @@ nodes:
   transform:
     operator: operators.datacoves.dbt.DatacovesDbtOperator
     type: task
-
     bash_command: "dbt build -s 'tag:daily_run_airbyte+ -t prd'"
     dependencies: ["extract_and_load_airbyte"]
