@@ -4,6 +4,8 @@ sources:
   - name: {{ relation.schema }}
 {%- if source_database %}
     database: {{ source_database }}
+    tags:
+      - daily_run_airbyte
 {%- endif %}
     tables:
       - name: {{ relation.name }}
