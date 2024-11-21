@@ -4,6 +4,7 @@ on:  # yamllint disable-line rule:truthy
   pull_request:
     types:
       - closed
+  push:
     branches:
       - main
     paths:
@@ -30,7 +31,7 @@ jobs:
   # Perform the deployment to Prod
   build:
     # Need to make sure that when the PR was closed, it was actually merged.
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    # if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
 
     name: Deployment Script
     runs-on: ubuntu-latest
