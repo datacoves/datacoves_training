@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: derrickbovard_avg_by_grade
+    description: 'Derricks model calculating loan average by grade.'
+    columns:
+      - name: grade
+      - name: avg_loan_amount
+      - name: total_loans
