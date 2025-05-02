@@ -1,8 +1,0 @@
-version: 2
-
-sources:
-  - name: JANEWHITAKERORRUM
-    database: RAW
-    tables:
-      - name: PERSONAL_LOANS
-        description: ''
