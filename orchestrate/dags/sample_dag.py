@@ -1,7 +1,6 @@
 import datetime
 
-from airflow.decorators import dag
-from operators.datacoves.dbt import DatacovesDbtOperator
+from airflow.decorators import dag, task
 
 
 @dag(
@@ -20,9 +19,13 @@ from operators.datacoves.dbt import DatacovesDbtOperator
 
 )
 def sample_dag():
-    run_dbt = DatacovesDbtOperator(
-        task_id="run_dbt", bash_command="dbt run - s country_codes"
+
+    @task.datacoves_dbt(
+        connection_id="main"
     )
+    def run_dbt():
+        return "dbt run -s my_model"
 
+    run_dbt()
 
-dag = sample_dag()
+sample_dag()
