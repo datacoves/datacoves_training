@@ -1,9 +1,0 @@
-version: 2
-
-models:
-  - name: noel_avg_by_grade
-    description: 'avg desc'
-    columns:
-      - name: grade
-      - name: avg_loan_amount
-      - name: total_loans
