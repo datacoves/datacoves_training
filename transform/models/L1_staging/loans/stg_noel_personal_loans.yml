@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_noel_personal_loans
-    description: ''
+    description: 'model desc'
     columns:
       - name: airbyte_raw_id
       - name: airbyte_extracted_at
