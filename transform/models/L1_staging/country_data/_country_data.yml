@@ -7,4 +7,4 @@ sources:
       - daily_run_airbyte
     tables:
       - name: COUNTRY_POPULATIONS
-        description: 'Raw population information from Github Datasets repository.. NOEL'
+        description: 'A country populations table.'
