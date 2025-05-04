@@ -13,16 +13,6 @@ on:  # yamllint disable-line rule:truthy
       - transform/*
       - transform/**/*
 
-# # To auto-trigger Github action on push to main comment line 16-23 and line 32
-#   push:
-#     branches:
-#       - main
-#     paths:
-#       - .github/workflows/*
-#       - automate/**
-#       - transform/*
-#       - transform/**/*
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -36,13 +26,7 @@ jobs:
     name: Deployment Script
     runs-on: ubuntu-latest
 
-    # Set environment variables in
-    # https://github.com//<your org>/<your repo>/settings/variables/actions
-    #
-    # Alternatively, You can define multiple ENV for different workflows.
-    # https://github.com/<org>/<repo>/settings/environments
-    # environment: PR_ENV
-    container: datacoves/ci-basic-dbt-snowflake:3.2
+    container: datacoves/ci-basic-dbt-snowflake:3.3
 
     defaults:
       run:
