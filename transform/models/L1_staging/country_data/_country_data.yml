@@ -7,4 +7,5 @@ sources:
       - daily_run_airbyte
     tables:
       - name: COUNTRY_POPULATIONS
+        description: 'Original Deac'
         description: 'A country populations table.'
