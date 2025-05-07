@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: AMBERCHILESDG
+    database: RAW
+    tags:
+      - daily_run_airbyte
+    tables:
+      - name: PERSONAL_LOANS
+        description: 'Personal loans table.'
