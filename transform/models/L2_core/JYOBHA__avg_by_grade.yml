@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: jyobha__avg_by_grade
-    description: ''
+  - name: JYOBHA__avg_by_grade
+    description: 'grade description'
     columns:
       - name: grade
       - name: avg_loan_amount
