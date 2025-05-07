@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: ariel_avg_by_grade
+    description: 'Average Things'
+    columns:
+      - name: grade
+      - name: avg_loan_amount
+      - name: total_loans
