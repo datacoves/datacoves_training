@@ -13,6 +13,7 @@ catchup: false
 
 nodes:
   run_dbt:
+  
     type: task
     operator: operators.datacoves.dbt.DatacovesDbtOperator
     bash_command: "dbt debug"
