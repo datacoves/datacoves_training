@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_ariel_personal_loans
-    description: 'Very Very Personal Loans'
+    description: Very Very Personal Loans
     columns:
       - name: airbyte_raw_id
       - name: airbyte_extracted_at
