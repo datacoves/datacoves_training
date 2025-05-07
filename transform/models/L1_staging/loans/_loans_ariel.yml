@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: ARIEL
+    database: RAW
+    tags:
+      - daily_run_airbyte
+    tables:
+      - name: PERSONAL_LOANS
+        description: 'Very Personal'
