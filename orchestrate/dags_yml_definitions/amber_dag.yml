@@ -1,12 +1,12 @@
 description: "Daily dbt run"
 schedule: "0 12 * * *"
 tags:
-  - version_1
+  - ac_transform
 default_args:
   start_date: 2023-01-01
-  owner: John Doe
+  owner: Amber Chiles
   # Replace with the email of the recipient for failures
-  email: john@example.com
+  email: amber.chiles@doublegood.com
   email_on_failure: true
   retires: 3
 catchup: false
@@ -15,4 +15,4 @@ nodes:
   run_dbt:
     type: task
     operator: operators.datacoves.dbt.DatacovesDbtOperator
-    bash_command: "dbt debug"
+    bash_command: "dbt run"
