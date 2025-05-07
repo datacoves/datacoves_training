@@ -1,7 +1,7 @@
 description: "Daily dbt run"
 schedule: "0 12 * * *"
 tags:
-  - version_1
+  - ng_transform
 default_args:
   start_date: 2023-01-01
   owner: John Doe
@@ -15,4 +15,4 @@ nodes:
   run_dbt:
     type: task
     operator: operators.datacoves.dbt.DatacovesDbtOperator
-    bash_command: "dbt debug"
+    bash_command: "dbt run"
