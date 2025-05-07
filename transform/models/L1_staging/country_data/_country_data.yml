@@ -7,4 +7,8 @@ sources:
       - daily_run_airbyte
     tables:
       - name: COUNTRY_POPULATIONS
+<<<<<<< HEAD
         description: 'A country populations table.'
+=======
+        description: A country\'s population data
+>>>>>>> feature/ariel
