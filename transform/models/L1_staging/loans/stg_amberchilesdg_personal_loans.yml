@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_amberchilesdg_personal_loans
-    description: ''
+    description: 'Staging personal loans table.'
     columns:
       - name: airbyte_raw_id
       - name: airbyte_extracted_at
