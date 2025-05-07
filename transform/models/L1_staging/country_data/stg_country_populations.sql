@@ -7,7 +7,7 @@ with raw_source as (
 
 final as (
 
-    sElect
+    select
         "YEAR"::float as year,
         "COUNTRY NAME"::varchar as country_name,
         "VALUE"::float as value,
