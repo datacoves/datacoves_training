@@ -45,7 +45,7 @@ jobs:
       DATACOVES__MAIN__WAREHOUSE: ${{ vars.DATACOVES__MAIN__WAREHOUSE }}
 
       DATACOVES__MAIN__USER:      ${{ vars.DATACOVES__MAIN__USER }}
-      DATACOVES__MAIN__PASSWORD:  ${{ secrets.DATACOVES__MAIN__PASSWORD }}
+      DATACOVES__MAIN__PRIVATE_KEY:  ${{ secrets.DATACOVES__MAIN__PRIVATE_KEY }}
 
       # This is used by datacoves to drop the staging database for blue/green
       # deployments, most likely you don't want to set this, we use it for demos
@@ -128,7 +128,7 @@ jobs:
       DATACOVES__MAIN__WAREHOUSE: ${{ vars.DATACOVES__MAIN__WAREHOUSE }}
 
       DATACOVES__MAIN__USER:      ${{ vars.DATACOVES__MAIN__USER }}
-      DATACOVES__MAIN__PASSWORD:  ${{ secrets.DATACOVES__MAIN__PASSWORD }}
+      DATACOVES__MAIN__PRIVATE_KEY:  ${{ secrets.DATACOVES__MAIN__PRIVATE_KEY }}
 
     steps:
       - name: Checkout branch
