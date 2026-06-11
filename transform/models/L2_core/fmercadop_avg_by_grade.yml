@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: fmercadop_avg_by_grade
+    description: 'this is a test'
+    columns:
+      - name: grade
+      - name: avg_loan_amount
+      - name: total_loans
