@@ -122,6 +122,10 @@ jobs:
           git push origin HEAD:main
           git push origin --tags
 
+      - name: Drop staging database on blue/green failure
+        if: failure()
+        run: "dbt --no-write-json run-operation drop_recreate_db --args '{db_name: ${{ env.DATACOVES__MAIN__DATABASE }}_STAGING, recreate: False}'"
+
   # Drops the temporary PR database
   drop-pr-db-on-close:
     name: Drop PR Database on Close
