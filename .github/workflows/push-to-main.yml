@@ -25,6 +25,8 @@ jobs:
 
     name: Deployment Script
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     container: datacoves/ci-basic-dbt-snowflake:3.3
 
@@ -103,6 +105,22 @@ jobs:
 
       - name: Upload dbt artifacts
         run: "dbt run-operation upload_artifacts"
+
+      - name: Configure git user for deployment tagging
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Set deployment version and tag
+        if: ${{ github.event_name == 'push' }}
+        run: "../automate/dbt/set_deployment_version.sh"
+
+      - name: Push version bump and tags to main
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          git push origin HEAD:main
+          git push origin --tags
 
   # Drops the temporary PR database
   drop-pr-db-on-close:
