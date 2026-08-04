@@ -106,6 +106,8 @@ jobs:
       - name: Upload dbt artifacts
         run: "dbt run-operation upload_artifacts"
 
+      # push-only: avoids double-bumping (a merge fires both pull_request:closed and push)
+      # and avoids tagging on an unmerged PR close or manual dispatch.
       - name: Configure git user for deployment tagging
         if: ${{ github.event_name == 'push' }}
         run: |
@@ -122,6 +124,8 @@ jobs:
           git push origin HEAD:main
           git push origin --tags
 
+      # Safety net for any failure above (not push-gated); drop is IF EXISTS so it's a
+      # no-op if dbt-coves already cleaned up staging on success.
       - name: Drop staging database on blue/green failure
         if: failure()
         run: "dbt --no-write-json run-operation drop_recreate_db --args '{db_name: ${{ env.DATACOVES__MAIN__DATABASE }}_STAGING, recreate: False}'"

@@ -64,6 +64,8 @@ jobs:
   dbt:
     name: Pull Request dbt Tests
     needs: [validate-branch, detect-changes]
+    # always(): needed deps are skipped (not failed) on workflow_dispatch since they're PR-only;
+    # this still blocks on a real validate-branch failure, and requires a detected change on PRs.
     if: ${{ always() && needs.validate-branch.result != 'failure' && (github.event_name == 'workflow_dispatch' || needs.detect-changes.outputs.dbt_changed == 'true') }}
     runs-on: ubuntu-latest
 
@@ -137,6 +139,7 @@ jobs:
 
 
       ##### Real dbt run given that we passed governance checks
+      # Slim CI: skip rebuilding models unchanged by this PR, clone their prod tables instead.
       - name: Clone unchanged incremental models from prod
         if: ${{ steps.prod_manifest.outputs.manifest_found == 'true' && contains(github.event.pull_request.labels.*.name, 'full-refresh') != true }}
         run: "dbt clone -s state:modified+,config.materialized:incremental,state:old --state logs"

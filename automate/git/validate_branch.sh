@@ -20,6 +20,7 @@ if [ "$TARGET_BRANCH" != "main" ]; then
 fi
 
 git fetch origin main
+# Require the PR branch to already contain latest main (avoids deploying stale merges).
 commits_behind=$(git rev-list --count HEAD..origin/main)
 if [ "$commits_behind" -gt 0 ]; then
   echo "ERROR: Branch '$SOURCE_BRANCH' is $commits_behind commit(s) behind 'main'. Please merge/pull main into your branch and push again."
