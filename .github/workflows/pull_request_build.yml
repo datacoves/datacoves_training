@@ -15,8 +15,27 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  validate-branch:
+    name: Validate Branch
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3.5.0
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Set Secure Directory
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
+
+      - name: Validate branch naming and sync with main
+        run: automate/git/validate_branch.sh "${{ github.head_ref }}" "${{ github.base_ref }}"
+
   dbt:
     name: Pull Request dbt Tests
+    needs: validate-branch
     runs-on: ubuntu-latest
 
     # most people should use this one
