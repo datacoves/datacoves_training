@@ -137,6 +137,14 @@ jobs:
 
 
       ##### Real dbt run given that we passed governance checks
+      - name: Clone unchanged incremental models from prod
+        if: ${{ steps.prod_manifest.outputs.manifest_found == 'true' && contains(github.event.pull_request.labels.*.name, 'full-refresh') != true }}
+        run: "dbt clone -s state:modified+,config.materialized:incremental,state:old --state logs"
+
+      - name: Clone unchanged snapshot models from prod
+        if: ${{ steps.prod_manifest.outputs.manifest_found == 'true' && contains(github.event.pull_request.labels.*.name, 'full-refresh') != true }}
+        run: "dbt clone -s state:modified+,config.materialized:snapshot,state:old --state logs"
+
       - name: Run dbt build slim mode
         if: ${{ steps.prod_manifest.outputs.manifest_found == 'true' && contains(github.event.pull_request.labels.*.name, 'full-refresh') != true }}
         run: "dbt build --fail-fast --defer --state logs --select state:modified+"
