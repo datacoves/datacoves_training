@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # most people should use this one
-    container: datacoves/ci-basic-dbt-snowflake:3.3
+    container: datacoves/ci-basic-dbt-snowflake:5.0
 
     defaults:
       run:
