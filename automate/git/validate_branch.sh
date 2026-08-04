@@ -14,8 +14,8 @@ if [[ "$SOURCE_BRANCH" != feature/* && "$SOURCE_BRANCH" != infra/* ]]; then
   exit 1
 fi
 
-if [ "$TARGET_BRANCH" != "main" ]; then
-  echo "ERROR: Target branch must be 'main', got '$TARGET_BRANCH'."
+if [ "$TARGET_BRANCH" != "main" ] && ! [[ "$SOURCE_BRANCH" == feature/* && "$TARGET_BRANCH" == feature/* ]]; then
+  echo "ERROR: Target branch must be 'main', or, for a feature/ source branch, another feature/ branch. Got '$TARGET_BRANCH'."
   exit 1
 fi
 
