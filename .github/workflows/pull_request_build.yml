@@ -5,6 +5,8 @@ on:  # yamllint disable-line rule:truthy
     paths:
       - transform/*
       - transform/**/*
+      - automate/dbt/*
+      - automate/dbt/**
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -33,9 +35,36 @@ jobs:
       - name: Validate branch naming and sync with main
         run: automate/git/validate_branch.sh "${{ github.head_ref }}" "${{ github.base_ref }}"
 
+  detect-changes:
+    name: Detect dbt-related Changes
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+
+    outputs:
+      dbt_changed: ${{ steps.check.outputs.dbt_changed }}
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3.5.0
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Check for dbt-related changes
+        id: check
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }} HEAD -- transform/ automate/dbt/)
+          if [ -n "$CHANGED" ]; then
+            echo "dbt_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "dbt_changed=false" >> $GITHUB_OUTPUT
+          fi
+
   dbt:
     name: Pull Request dbt Tests
-    needs: validate-branch
+    needs: [validate-branch, detect-changes]
+    if: ${{ always() && needs.validate-branch.result != 'failure' && (github.event_name == 'workflow_dispatch' || needs.detect-changes.outputs.dbt_changed == 'true') }}
     runs-on: ubuntu-latest
 
     # most people should use this one
