@@ -25,8 +25,10 @@ jobs:
 
     name: Deployment Script
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
-    container: datacoves/ci-basic-dbt-snowflake:3.3
+    container: datacoves/ci-basic-dbt-snowflake:5.0
 
     defaults:
       run:
@@ -68,17 +70,26 @@ jobs:
         id: prod-manifest
         run: "../automate/dbt/get_artifacts.sh"
 
+      - name: Check for full-refresh deploy marker
+        id: full-refresh-marker
+        run: |
+          if git log -1 --pretty=%B | grep -q "\[deploy:full-refresh\]"; then
+            echo "flag=--full-refresh" >> $GITHUB_OUTPUT
+          else
+            echo "flag=" >> $GITHUB_OUTPUT
+          fi
+
       # Runs blue green with no deferral
       - name: Run blue / green deployment
         if: ${{ steps.prod-manifest.outputs.manifest_found == 'false' }}
         id: run-blue-green
-        run: "dbt-coves blue-green"
+        run: "dbt-coves blue-green ${{ steps.full-refresh-marker.outputs.flag }}"
 
       # Runs blue green with deferral
       - name: Run blue / green deployment with deferral
         if: ${{ steps.prod-manifest.outputs.manifest_found == 'true' }}
         id: run-blue-green-defer
-        run: "dbt-coves blue-green --defer"
+        run: "dbt-coves blue-green --defer ${{ steps.full-refresh-marker.outputs.flag }}"
 
       - name: Drop orphaned relations in db that are no longer in dbt
         run: "dbt run-operation drop_orphaned_relations --args '{\"dry_run\": false}'"
@@ -95,6 +106,30 @@ jobs:
       - name: Upload dbt artifacts
         run: "dbt run-operation upload_artifacts"
 
+      # push-only: avoids double-bumping (a merge fires both pull_request:closed and push)
+      # and avoids tagging on an unmerged PR close or manual dispatch.
+      - name: Configure git user for deployment tagging
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Set deployment version and tag
+        if: ${{ github.event_name == 'push' }}
+        run: "../automate/dbt/set_deployment_version.sh"
+
+      - name: Push version bump and tags to main
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          git push origin HEAD:main
+          git push origin --tags
+
+      # Safety net for any failure above (not push-gated); drop is IF EXISTS so it's a
+      # no-op if dbt-coves already cleaned up staging on success.
+      - name: Drop staging database on blue/green failure
+        if: failure()
+        run: "dbt --no-write-json run-operation drop_recreate_db --args '{db_name: ${{ env.DATACOVES__MAIN__DATABASE }}_STAGING, recreate: False}'"
+
   # Drops the temporary PR database
   drop-pr-db-on-close:
     name: Drop PR Database on Close
@@ -108,7 +143,7 @@ jobs:
     # Alternatively, You can define multiple ENV for different workflows.
     # https://github.com/<org>/<repo>/settings/environments
     # environment: PR_ENV
-    container: datacoves/ci-basic-dbt-snowflake:3.2
+    container: datacoves/ci-basic-dbt-snowflake:5.0
 
     defaults:
       run:
