@@ -1,3 +1,4 @@
+
 """
 ## Run an Azure Data Factory pipeline
 Starts an ADF pipeline, then waits for it with a deferrable sensor. While the sensor waits, it runs in
@@ -64,3 +65,5 @@ def run_adf_pipeline():
         run_pipeline >> wait_for_pipeline
 
     adf_pipeline("myTestPipeline")
+
+run_adf_pipeline()
